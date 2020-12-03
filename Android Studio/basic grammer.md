@@ -47,9 +47,9 @@
   }
   ```
   
-```kotlin
+    ```kotlin
   // out: 9
-```
+    ```
 
 
 ##### 2. val vs var
