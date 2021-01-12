@@ -293,3 +293,64 @@ wan.foo(); // 32
 
 그냥 foo(); 라고 실행시키면 100이 출력이 되지만 dot notation 방식으로 실행을 하게 되면 this가 가리키는 값이 . 앞의 객체로 바뀌게 된다.
 
+
+
+## 5. Promise
+
+Javascript에서 `Promise`는 `비동기적`으로 실행하는 작업의 결과(성공 혹은 실패)를 나타내는 '객체'
+
+생성자 함수와 동일하게 'new'를 사용하여 Promise 객체를 만들 수 있다.
+
+Executor라는 인자가 들어가는데 이는 `resolve`와 `reject`라는 두 개의 함수를 매개변수로 받는 실행함수이다. Executor는 비동기 작업을 시작하고 모든 작업을 끝낸 후, 해당 작업이 **성공적으로 이행되었으면 'resolve' 함수를 호출**하고, **중간에 오류가 발생한 경우 'reject' 함수를 호출**한다.
+
+```javascript
+var timeAttack = new Promise(function (resolve, reject) {
+	setTimeout(function () {
+        var ran = Math.random() * 10;
+       	if (ran >= 5) {
+         	resolve(ran);
+       	} else {
+        	reject();
+       }
+     }, 1000);
+   });
+```
+
+'timeAttack'이라는 Promise는 3가지 상태를 가진다.
+
+1) 대기(pending) - 아직 실행되지 않은 초기 상태
+2) 이행(fulfilled) - 작업이 성공적으로 완료됨
+3) 거부(rejected) - 작업이 실패함
+
+작업이 성공적으로 이행이 되었거나, 실패했을 때, 어떠한 작업을 해야 하는데 이 작업은 then 메소드에 의해 실행이 된다.
+
+```javascript
+timeAttack.then(function (num) {
+    console.log(num + 'complete');
+}, function () {
+    console.log('error');
+});
+   
+// promise.then(성공 시 콜백 함수, 실패 시 콜백 함수) 이러한 방식으로 콜백을 실행
+```
+
+
+
+## Arrow Function
+
+화살표 함수 표현식은 기존의 function 표현 방식보다 **간결**하게 함수를 표현할 수 있다. 화살표 함수는 **항상 익명**이며, 자신의 this, arguments, super 그리고 new.target을 바인딩하지 않는다. 그래서 생성자로는 사용할 수 없다.
+
+```javascript
+function foo() {
+    this.bar = 0;
+    
+    setInterval(() => {
+        this.bar++; // this는 foo의 객체를 참조(일반함수의 this는 자기 자신을 this로 정의하는 것과는 다르다.)
+    }, 10);
+}
+
+var x = new foo();
+```
+
+
+
