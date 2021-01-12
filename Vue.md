@@ -107,5 +107,28 @@ VUe 컴포넌트에서 Computed와 같은 역할을 한다. getter의 결과는 
 
 
 
+## 3. 브라우저 크기
+
+#### 1) 자바스크립트 이용
+
+- window.innerWidth: 브라우저 *화면의 너비*
+- window.innerHeight: 브라우저 *화면의 높이*
+- window.outerWidth: 브라우저 *전체의 너비*
+- window.outerHeight: 브라우저 *전체의 높이*
+
+이후, EventListener를 활용하여 resize를 진행해주면 브라우저 크기에 따른 반응형 웹을 생성 가능
+
+
+
+#### 2) 라이브러리 사용
+
+라이브러리 설치
+
+```bash
+npm i vue-window-size
+```
+
+이후, import { useWindowSize } from 'vue-window-size'; 를 통하여 {{windowWidth(Height)}}사용 가능
+
 
 
